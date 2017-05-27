@@ -13,6 +13,8 @@ from rest_framework import status
 # Django viewset
 from rest_framework import viewsets
 
+from . import models
+
 
 # Django rest_framework API response
 class HelloApiView(APIView):
@@ -116,3 +118,9 @@ class HelloViewSet(viewsets.ViewSet):
         """Handles removing an object."""
 
         return Response({'http_method': 'DELETE'})
+
+class UserProfileViewSet(viewsets.ModelViewSet):
+    """Handles creating, reading and updating profiles."""
+
+    serializer_class = serializers.UserProfileSerializer
+    queryset = models.UserProfile.objects.all()
