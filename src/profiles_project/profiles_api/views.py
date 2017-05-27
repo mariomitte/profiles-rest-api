@@ -5,6 +5,7 @@ from django.shortcuts import render
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
+
 from rest_framework.authentication import TokenAuthentication
 # POST metoda = uključuje serializers
 from . import serializers
@@ -15,6 +16,8 @@ from rest_framework import viewsets
 
 from . import models
 from . import permissions
+
+from rest_framework import filters
 
 
 # Django rest_framework API response
@@ -127,3 +130,5 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     queryset = models.UserProfile.objects.all()
     authentication_classes = (TokenAuthentication,) # ostavi zarez jer varijbla mora biti vrste tuple
     permission_classes = (permissions.UpdateOwnProfile,) # ostavi zarez
+    filter_backends = (filters.SearchFilter,) # ostavi zarez
+    search_fields = ('name', 'email',) # ostavi zarez
