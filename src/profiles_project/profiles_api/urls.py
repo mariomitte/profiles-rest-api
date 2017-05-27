@@ -11,6 +11,7 @@ router = DefaultRouter()
 router.register('hello-viewset', views.HelloViewSet, base_name='hello-viewset')
 router.register('profile', views.UserProfileViewSet) # ne treba base_name jer Django rest_framework skuzi
 router.register('login', views.LoginViewSet, base_name='login')
+router.register('feed', views.UserProfileFeedViewSet)
 
 urlpatterns = [
     url(r'^hello-view/', views.HelloApiView.as_view()),
